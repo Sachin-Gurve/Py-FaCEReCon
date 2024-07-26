@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Details</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>User Details</h1>
+    <p><strong>First Name:</strong> {{ user.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Mobile:</strong> {{ user.mobile }}</p>
+    <p><strong>Created Date:</strong> {{ user.createdDate }}</p>
+    <p><strong>Modified Date:</strong> {{ user.modifiedDate }}</p>
+    <p><strong>Unique Identifier:</strong> {{ user.uniqueIdentifier }}</p>
+    {% if user.image %}
+    <p><strong>Image:</strong></p>
+    <img
+      src="{{ url_for('uploaded_file', filename=user.image.split('/')[-1]) }}"
+      alt="User Image"
+      width="200"
+    />
+    {% else %}
+    <p>No Image Uploaded</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Back to User List</a>
+  </body>
+</html>
